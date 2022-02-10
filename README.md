@@ -29,7 +29,7 @@ alt="Video" width="480" height="270" border="10" /></a>
 ## New Functionalities
 
 ### Web Page Controller
-For control your Sonoff from a non Apple device just navigate to the Sonoff IP address and a web page will allow you to turn it on or off
+To control your Sonoff from a non-Apple device just navigate to the Sonoff IP address and a web page will allow you to turn it on or off
 
 ### Rest APIs
 A full set of Rest APIs are available:
@@ -42,10 +42,10 @@ All the request are in **GET** and are relative to the IP address of the Sonoff.
 In order to turn on the Sonoff at IP 192.168.0.22 you can: `$ curl 192.168.0.22/on`
 
 ### AutoReconnect after power outage
-A problem with the old firmware was that after a power outage the Sonoff was immediately searching for the stored WIFI connection, but since the router was still powering on the Sonoff was prompting the configuration procedure. Now this problem is fixed, if the Sonoff does not have a WIFI Connection every 10min the Sonoff will restart.
+A problem with the old firmware was that after a power outage the Sonoff immediately began searching for the stored WIFI connection, but if the router had not yet powered on, the Sonoff started its configuration procedure. This problem is now fixed; if the Sonoff does not have a WIFI Connection for over ten minutes the Sonoff will restart.
 
 ### Selectable PowerOn state
-By default the Sonoff will have a Enabled state at power on, you can change this by selecting "OFF" in the `flash.sh` script
+By default the Sonoff will have an Enabled state at power on, you can change this by selecting "OFF" in the `flash.sh` script
 
 ---
 
