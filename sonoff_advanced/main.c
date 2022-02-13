@@ -101,7 +101,7 @@ void reset_configuration_task() {
 }
 
 void reset_configuration() {
-    printf("Resetting Sonoff configuration\n");
+    printf("Resetting Arthem H1 configuration\n");
     xTaskCreate(reset_configuration_task, "Reset configuration", 256, NULL, 2, NULL);
 }
 
@@ -175,21 +175,21 @@ void create_wifi_connection_watchdog() {
     xTaskCreate(wifi_connection_watchdog_task, "Wifi Connection Watchdog", 128, NULL, 3, NULL);
 }
 
-homekit_characteristic_t name = HOMEKIT_CHARACTERISTIC_(NAME, "Sonoff Switch");
+homekit_characteristic_t name = HOMEKIT_CHARACTERISTIC_(NAME, "Arthem H1");
 
 homekit_accessory_t *accessories[] = {
     HOMEKIT_ACCESSORY(.id=1, .category=homekit_accessory_category_switch, .services=(homekit_service_t*[]){
         HOMEKIT_SERVICE(ACCESSORY_INFORMATION, .characteristics=(homekit_characteristic_t*[]){
             &name,
-            HOMEKIT_CHARACTERISTIC(MANUFACTURER, "Gruppio"),
-            HOMEKIT_CHARACTERISTIC(SERIAL_NUMBER, "037A2BABF19D"),
-            HOMEKIT_CHARACTERISTIC(MODEL, "Basic"),
+            HOMEKIT_CHARACTERISTIC(MANUFACTURER, "Arthem Co."),
+            HOMEKIT_CHARACTERISTIC(SERIAL_NUMBER, "2F142FA65B"),
+            HOMEKIT_CHARACTERISTIC(MODEL, "1G"),
             HOMEKIT_CHARACTERISTIC(FIRMWARE_REVISION, "1.0.0"),
             HOMEKIT_CHARACTERISTIC(IDENTIFY, switch_identify),
             NULL
         }),
         HOMEKIT_SERVICE(SWITCH, .primary=true, .characteristics=(homekit_characteristic_t*[]){
-            HOMEKIT_CHARACTERISTIC(NAME, "Sonoff Switch"),
+            HOMEKIT_CHARACTERISTIC(NAME, "Arthem H1"),
             &switch_on,
             NULL
         }),
@@ -279,10 +279,10 @@ void create_accessory_name() {
     uint8_t macaddr[6];
     sdk_wifi_get_macaddr(STATION_IF, macaddr);
     
-    int name_len = snprintf(NULL, 0, "Sonoff Switch-%02X%02X%02X",
+    int name_len = snprintf(NULL, 0, "Arthem H1 Switch-%02X%02X%02X",
                             macaddr[3], macaddr[4], macaddr[5]);
     char *name_value = malloc(name_len+1);
-    snprintf(name_value, name_len+1, "Sonoff Switch-%02X%02X%02X",
+    snprintf(name_value, name_len+1, "Arthem H1 Switch-%02X%02X%02X",
              macaddr[3], macaddr[4], macaddr[5]);
     
     name.value = HOMEKIT_STRING(name_value);
@@ -293,7 +293,7 @@ void user_init(void) {
 
     create_accessory_name();
     
-    wifi_config_init("sonoff-switch", NULL, on_wifi_ready);
+    wifi_config_init("ArthemH1-switch", NULL, on_wifi_ready);
     gpio_init();
 
     if (button_create(button_gpio, 0, 4000, button_callback)) {

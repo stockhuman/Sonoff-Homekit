@@ -57,7 +57,7 @@ Here is a summary of the steps:
 
 1. Clone the repositories:
 ```shell
-git clone https://github.com/thefonseca/Sonoff-Homekit.git
+git clone https://github.com/stockhuman/Sonoff-Homekit.git
 git clone --recursive https://github.com/SuperHouse/esp-open-rtos.git
 git clone --recursive https://github.com/maximkulkin/esp-homekit-demo.git
 ```
@@ -100,15 +100,16 @@ which you can get [here](https://github.com/SuperHouse/esp-open-rtos/tree/master
 
 ### Prepare the hardware
 1. Before flashing, check out these [hardware preparation instructions](https://tasmota.github.io/docs/Getting-Started/#hardware-preparation).
+Note, it may take more than the recommended 3 seconds to boot into flash mode. Holding the button down for for up to 5 seconds reliably boots the device into the appropriate state.
 2. Setup your serial port environment variable:
-```shell
+```sh
 # you can run this command to find the name of your USB device  
 ls /dev/tty.*
 
-export ESPPORT=/dev/tty.SLAB_USBtoUART
+export ESPPORT=/dev/tty.YOUR_PORT
 ```
 3. Backup your current firmware. You can do this using [esptool](https://github.com/espressif/esptool):
-```shell
+```sh
 python -m pip install esptool
 
 # Backup
