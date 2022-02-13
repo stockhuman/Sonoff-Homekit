@@ -293,7 +293,7 @@ void user_init(void) {
 
     create_accessory_name();
     
-    wifi_config_init("ArthemH1-switch", NULL, on_wifi_ready);
+    wifi_config_init("Arthem H1", NULL, on_wifi_ready);
     gpio_init();
 
     if (button_create(button_gpio, 0, 4000, button_callback)) {
